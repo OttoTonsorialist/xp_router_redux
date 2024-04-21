@@ -5,9 +5,11 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import { autoUpdater } from 'electron-updater';
 import icon from '../../resources/icon.png?asset';
 
+log.transports.file.level = 'info';
+log.transports.file.format = '[{h}:{i}:{s}] [{level}] [{scope}]: {text}';
+log.transports.console.format = '[{h}:{i}:{s}] [{level}] [{scope}]: {text}';
 autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = 'info';
-log.info('App starting...');
+log.info('App starting');
 
 let mainWindow;
 function createWindow() {
@@ -40,7 +42,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-    electronApp.setAppUserModelId('com.electron');
+    electronApp.setAppUserModelId('com.xp_router_redux');
 
     // Default open or close DevTools by F12 in development
     // and ignore CommandOrControl + R in production.
@@ -51,7 +53,9 @@ app.whenReady().then(() => {
 
     ipcMain.on('ping', () => console.log('pong'));
     createWindow();
+    log.info('Launching check for updates, current version: ' + autoUpdater.currentVersion);
     autoUpdater.checkForUpdates();
+    log.info('donezo');
 
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
@@ -64,7 +68,27 @@ app.on('window-all-closed', () => {
     }
 });
 
+autoUpdater.on('checking-for-update', () => {
+    log.info('checking for update!');
+});
+
+autoUpdater.on('update-available', (info) => {
+    log.info('found update!');
+    log.info(JSON.stringify(info));
+});
+
+autoUpdater.on('update-no-available', (info) => {
+    log.info('beep boop sad toot');
+    log.info(JSON.stringify(info));
+});
+
+autoUpdater.on('error', (err) => {
+    log.info('error in auto updater');
+    log.info(JSON.stringify(err));
+});
+
 autoUpdater.on('update-downloaded', (info) => {
+    log.info('Launching check for updates');
     dialog.showMessageBox(
         mainWindow,
         {
