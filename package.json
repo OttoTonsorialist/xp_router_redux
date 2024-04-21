@@ -1,0 +1,38 @@
+{
+    "name": "xp_router_redux",
+    "version": "0.0.2",
+    "description": "Helps plan out routes of solo mon playthroughs of pokemon",
+    "main": "./out/main/index.js",
+    "repository": "https://github.com/OttoTonsorialist/xp_router_redux",
+    "author": "OttoTonsorialist",
+    "scripts": {
+        "format": "prettier --write .",
+        "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+        "start": "electron-vite preview",
+        "dev": "electron-vite dev",
+        "build": "electron-vite build",
+        "postinstall": "electron-builder install-app-deps",
+        "publish_helper": "npm run build && electron-builder --win -p always",
+        "publish": "./build_helper.sh 'yarn && yarn publish_helper'"
+    },
+    "dependencies": {
+        "@electron-toolkit/preload": "^3.0.0",
+        "@electron-toolkit/utils": "^3.0.0",
+        "electron-log": "^5.1.2",
+        "electron-updater": "^6.1.8"
+    },
+    "devDependencies": {
+        "@electron-toolkit/eslint-config": "^1.0.1",
+        "@rushstack/eslint-patch": "^1.6.1",
+        "@vitejs/plugin-vue": "^5.0.3",
+        "@vue/eslint-config-prettier": "^9.0.0",
+        "electron": "^28.2.0",
+        "electron-builder": "^24.9.1",
+        "electron-vite": "^2.0.0",
+        "eslint": "^8.56.0",
+        "eslint-plugin-vue": "^9.20.1",
+        "prettier": "^3.2.5",
+        "vite": "^5.0.12",
+        "vue": "^3.4.15"
+    }
+}
