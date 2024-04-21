@@ -7,7 +7,6 @@ import icon from '../../resources/icon.png?asset';
 
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
-log.info('App starting');
 
 let mainWindow;
 function createWindow() {
@@ -40,6 +39,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+    log.info('App ready');
     electronApp.setAppUserModelId('com.xp_router_redux');
 
     // Default open or close DevTools by F12 in development
@@ -52,6 +52,7 @@ app.whenReady().then(() => {
     ipcMain.on('ping', () => console.log('pong'));
     createWindow();
     log.info('Launching check for updates, current version: ' + autoUpdater.currentVersion);
+    autoUpdater.autoInstallOnAppQuit = false;
     autoUpdater.checkForUpdates();
     log.info('donezo');
 
@@ -66,41 +67,22 @@ app.on('window-all-closed', () => {
     }
 });
 
-autoUpdater.on('checking-for-update', () => {
-    log.info('checking for update!');
-});
-
-autoUpdater.on('update-available', (info) => {
-    log.info('found update!');
-    log.info(JSON.stringify(info));
-});
-
-autoUpdater.on('update-no-available', (info) => {
-    log.info('beep boop sad toot');
-    log.info(JSON.stringify(info));
-});
-
-autoUpdater.on('error', (err) => {
-    log.info('error in auto updater');
-    log.info(JSON.stringify(err));
-});
-
 autoUpdater.on('update-downloaded', (info) => {
     log.info('Launching check for updates');
+    log.info(JSON.stringify(info));
     dialog.showMessageBox(
         mainWindow,
         {
             type: 'question',
-            message: 'Update?',
-            detail: 'got info: ' + JSON.stringify(info),
+            message: 'Install Update?',
+            detail: 'Update to new version ' + info.version,
             buttons: ['Update', 'Ignore'],
             defaultId: 0,
             cancelId: 1,
-        },
-        (clickedIndex) => {
-            if (clickedIndex == 0) {
-                autoUpdater.quitAndInstall();
-            }
-        },
-    );
+        }
+    ).then(result => {
+        if (result.response == 0) {
+            autoUpdater.quitAndInstall();
+        }
+    });
 });

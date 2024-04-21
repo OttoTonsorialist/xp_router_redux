@@ -1,6 +1,6 @@
 {
     "name": "xp_router_redux",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Helps plan out routes of solo mon playthroughs of pokemon",
     "main": "./out/main/index.js",
     "repository": "https://github.com/OttoTonsorialist/xp_router_redux",
