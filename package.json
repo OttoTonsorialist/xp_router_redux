@@ -1,6 +1,6 @@
 {
     "name": "xp_router_redux",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Helps plan out routes of solo mon playthroughs of pokemon",
     "main": "./out/main/index.js",
     "repository": "https://github.com/OttoTonsorialist/xp_router_redux",
@@ -12,8 +12,8 @@
         "dev": "electron-vite dev",
         "build": "electron-vite build",
         "postinstall": "electron-builder install-app-deps",
-        "publish_helper": "npm run build && electron-builder --win -p always",
-        "publish": "./build_helper.sh 'yarn && yarn publish_helper'"
+        "publish_helper": "npm run build && electron-builder --win portable -p always",
+        "publish": ". ./secrets.env && ./build_helper.sh 'yarn && yarn publish_helper'"
     },
     "dependencies": {
         "@electron-toolkit/preload": "^3.0.0",
@@ -34,5 +34,8 @@
         "prettier": "^3.2.5",
         "vite": "^5.0.12",
         "vue": "^3.4.15"
+    },
+    "build": {
+        "appId": "com.xp_router_redux.app"
     }
 }
