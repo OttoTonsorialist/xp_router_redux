@@ -6,8 +6,6 @@ import { autoUpdater } from 'electron-updater';
 import icon from '../../resources/icon.png?asset';
 
 log.transports.file.level = 'info';
-log.transports.file.format = '[{h}:{i}:{s}] [{level}] [{scope}]: {text}';
-log.transports.console.format = '[{h}:{i}:{s}] [{level}] [{scope}]: {text}';
 autoUpdater.logger = log;
 log.info('App starting');
 
