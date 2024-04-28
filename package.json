@@ -13,6 +13,8 @@
         "build": "vue-tsc --noEmit && vite build",
         "tbuild": "npm run build && electron-builder --dir",
         "wtbuild": "npm run build && electron-builder --win",
+        "lwt_helper": "npm run build && electron-builder --win",
+        "lwtbuild": "./build_helper.sh 'yarn && yarn lwt_helper'",
         "publish_helper": "npm run build && electron-builder --win -p always",
         "publish": ". ./secrets.env && ./build_helper.sh 'yarn && yarn publish_helper'"
     },
@@ -85,11 +87,13 @@
         "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
         "appId": "com.xp_router_redux.app",
         "asarUnpack": [
-            "resource/**"
+            "resources/**",
+            "public/**"
         ],
         "productName": "XpRouterRedux",
         "directories": {
-            "output": "release/${version}"
+            "output": "release/${version}",
+            "buildResources": "public"
         },
         "files": [
             "dist",
@@ -105,7 +109,8 @@
                         "x64"
                     ]
                 }
-            ]
+            ],
+            "icon": "public/icon.png"
         },
         "nsis": {
             "artifactName": "${name}-${version}-setup.${ext}",
