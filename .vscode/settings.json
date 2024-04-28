@@ -1,18 +1,11 @@
 {
     "json.schemas": [
         {
-            "fileMatch": [
-                "/*electron-builder.json"
-            ],
+            "fileMatch": ["/*electron-builder.json"],
             "url": "https://json.schemastore.org/electron-builder"
         }
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.tsc.autoDetect": "off",
-    "eslint.format.enable": true,
-    "editor.formatOnSave": true,
-    "eslint.validate": [
-        "javascript",
-        "typescript",
-    ],
+    "eslint.validate": ["javascript", "typescript"]
 }

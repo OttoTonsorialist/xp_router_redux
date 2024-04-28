@@ -1,6 +1,6 @@
 {
     "name": "xp_router_redux",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Helps plan out routes of solo",
     "repository": "https://github.com/OttoTonsorialist/xp_router_redux",
     "author": "OttoTonsorialist",
@@ -11,7 +11,8 @@
         "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
-        "windows_test_build": "npm run build && electron-builder --win",
+        "tbuild": "npm run build && electron-builder --dir",
+        "wtbuild": "npm run build && electron-builder --win",
         "publish_helper": "npm run build && electron-builder --win -p always",
         "publish": ". ./secrets.env && ./build_helper.sh 'yarn && yarn publish_helper'"
     },
@@ -68,7 +69,9 @@
             "node_modules",
             "build",
             "dist",
-            "public"
+            "public",
+            "out",
+            "release"
         ]
     },
     "private": true,
@@ -81,13 +84,17 @@
     "build": {
         "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
         "appId": "com.xp_router_redux.app",
-        "asar": true,
+        "asarUnpack": [
+            "resource/**"
+        ],
         "productName": "XpRouterRedux",
         "directories": {
             "output": "release/${version}"
         },
         "files": [
-            "dist"
+            "dist",
+            "index.html",
+            "public"
         ],
         "win": {
             "executableName": "xp_router_redux",
@@ -107,12 +114,12 @@
             "deleteAppDataOnUninstall": false
         }
     },
-    "pretter": {
+    "prettier": {
         "singleQuote": true,
         "semi": true,
         "printWidth": 200,
         "trailingComma": "all",
-        "singleAttributePerLIne": true,
+        "singleAttributePerLine": true,
         "tabWidth": 4
     }
 }

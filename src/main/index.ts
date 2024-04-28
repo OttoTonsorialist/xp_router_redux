@@ -29,12 +29,12 @@ if (!app.requestSingleInstanceLock()) {
 
 let main_window: BrowserWindow | null = null;
 const preload = path.join(__dirname, '../preload/index.mjs');
-const index_html = path.join(process.env.DIST_DIR, 'src', 'renderer', 'index.html');
+const index_html = path.join(process.env.DIST_DIR, 'index.html');
 
 function createWindow() {
     let result = new BrowserWindow({
-        width: 900,
-        height: 670,
+        width: 2000,
+        height: 1200,
         show: false,
         title: 'XP Router',
         icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
