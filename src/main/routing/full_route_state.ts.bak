@@ -1,0 +1,7 @@
+
+// TODO: fix these to be correct. Just stubbing for now
+interface RouteState {
+    solo_pkmn: string,
+    badges: string,
+    inventory: string
+}

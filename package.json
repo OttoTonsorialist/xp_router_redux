@@ -1,42 +1,118 @@
 {
     "name": "xp_router_redux",
-    "version": "0.0.5",
-    "description": "Helps plan out routes of solo mon playthroughs of pokemon",
-    "main": "./out/main/index.js",
+    "version": "0.0.6",
+    "description": "Helps plan out routes of solo",
     "repository": "https://github.com/OttoTonsorialist/xp_router_redux",
     "author": "OttoTonsorialist",
+    "license": "MIT",
+    "main": "dist/main/index.js",
     "scripts": {
         "format": "prettier --write .",
         "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-        "start": "electron-vite preview",
-        "dev": "electron-vite dev",
-        "build": "electron-vite build",
-        "postinstall": "electron-builder install-app-deps",
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
         "windows_test_build": "npm run build && electron-builder --win",
         "publish_helper": "npm run build && electron-builder --win -p always",
         "publish": ". ./secrets.env && ./build_helper.sh 'yarn && yarn publish_helper'"
     },
     "dependencies": {
-        "@electron-toolkit/preload": "^3.0.0",
         "@electron-toolkit/utils": "^3.0.0",
         "electron-log": "^5.1.2",
         "electron-updater": "^6.1.8"
     },
     "devDependencies": {
-        "@electron-toolkit/eslint-config": "^1.0.1",
-        "@rushstack/eslint-patch": "^1.6.1",
-        "@vitejs/plugin-vue": "^5.0.3",
+        "@electron-toolkit/eslint-config": "^1.0.2",
+        "@typescript-eslint/eslint-plugin": "^7.7.1",
+        "@typescript-eslint/parser": "^7.7.1",
+        "@vitejs/plugin-vue": "^5.0.4",
         "@vue/eslint-config-prettier": "^9.0.0",
-        "electron": "^28.2.0",
-        "electron-builder": "^24.9.1",
-        "electron-vite": "^2.0.0",
-        "eslint": "^8.56.0",
-        "eslint-plugin-vue": "^9.20.1",
+        "electron": "^29.1.1",
+        "electron-builder": "^24.13.3",
+        "eslint": "^8.57.0",
+        "eslint-plugin-vue": "^9.25.0",
         "prettier": "^3.2.5",
-        "vite": "^5.0.12",
-        "vue": "^3.4.15"
+        "typescript": "^5.4.2",
+        "typescript-eslint": "^7.7.1",
+        "vite": "^5.1.5",
+        "vite-plugin-electron": "^0.28.4",
+        "vite-plugin-electron-renderer": "^0.14.5",
+        "vue": "^3.4.21",
+        "vue-tsc": "^2.0.6"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true,
+            "es6": true
+        },
+        "extends": [
+            "plugin:vue/vue3-essential"
+        ],
+        "plugins": [
+            "@typescript-eslint"
+        ],
+        "parserOptions": {
+            "ecmaVersion": 2020
+        },
+        "rules": {
+            "eqeqeq": "error",
+            "no-console": "warn",
+            "no-undef": "off",
+            "no-unused-vars": "off",
+            "@typescript-eslint/explicit-module-boundary-types": "off",
+            "@typescript-eslint/explicit-function-return-type": "off",
+            "@typescript-eslint/no-explicit-any": "error",
+            "@typescript-eslint/no-unused-vars": "warn"
+        },
+        "ignorePatterns": [
+            "node_modules",
+            "build",
+            "dist",
+            "public"
+        ]
+    },
+    "private": true,
+    "type": "module",
+    "debug": {
+        "env": {
+            "VITE_DEV_SERVER_URL": "http://127.0.0.1:3344/"
+        }
     },
     "build": {
-        "appId": "com.xp_router_redux.app"
+        "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+        "appId": "com.xp_router_redux.app",
+        "asar": true,
+        "productName": "XpRouterRedux",
+        "directories": {
+            "output": "release/${version}"
+        },
+        "files": [
+            "dist"
+        ],
+        "win": {
+            "executableName": "xp_router_redux",
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64"
+                    ]
+                }
+            ]
+        },
+        "nsis": {
+            "artifactName": "${name}-${version}-setup.${ext}",
+            "shortcutName": "${productName}",
+            "uninstallDisplayName": "${productName}",
+            "deleteAppDataOnUninstall": false
+        }
+    },
+    "pretter": {
+        "singleQuote": true,
+        "semi": true,
+        "printWidth": 200,
+        "trailingComma": "all",
+        "singleAttributePerLIne": true,
+        "tabWidth": 4
     }
 }
