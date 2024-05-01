@@ -1,0 +1,10 @@
+ARG DOCKER_IMAGE_NAME
+FROM $DOCKER_IMAGE_NAME
+
+ARG USER_ID
+ARG GROUP_ID
+
+RUN addgroup --gid $GROUP_ID dynamic_group &&\
+    adduser --gecos '' --gid $GROUP_ID --disabled-password --uid $USER_ID dynamic_user
+
+USER dynamic_user
