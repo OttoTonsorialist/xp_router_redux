@@ -11,6 +11,8 @@
         "esModuleInterop": true,
         "lib": ["ESNext", "DOM"],
         "skipLibCheck": true,
+        "removeComments": true,
+        "noImplicitReturns": true,
         "noEmit": true
     },
     "include": ["src"],
