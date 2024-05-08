@@ -15,7 +15,7 @@ export default defineConfig(({ command }) => {
             vue(),
             electron({
                 main: {
-                    entry: 'src/main/index.ts',
+                    entry: 'src/main/main.ts',
                     vite: {
                         build: {
                             sourcemap,
@@ -28,7 +28,7 @@ export default defineConfig(({ command }) => {
                     },
                 },
                 preload: {
-                    input: 'src/preload/index.ts',
+                    input: 'src/preload/preload.ts',
                     vite: {
                         build: {
                             sourcemap: sourcemap ? 'inline' : undefined,

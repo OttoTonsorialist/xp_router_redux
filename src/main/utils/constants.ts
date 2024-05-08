@@ -413,7 +413,7 @@ class XpRouterConstants {
             [this.LEAF_GREEN_VERSION]: "#00dd00",
         };
 
-        // TODO: should be importing this from the index.ts file? where we already have it defined
+        // TODO: should be importing this from the main.ts file? where we already have it defined
         this.SOURCE_ROOT_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..");
         this.GLOBAL_CONFIG_DIR = path.join(get_data_dir(), this.APP_DATA_FOLDER_DEFAULT_NAME);
         this.GLOBAL_CONFIG_FILE = path.join(this.GLOBAL_CONFIG_DIR, "config.json");
