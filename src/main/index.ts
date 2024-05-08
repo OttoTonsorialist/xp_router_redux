@@ -13,11 +13,11 @@ import { ServerEventController } from './controllers/server_event_controller';
 
 log.transports.file.level = 'info';
 const __dirname = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-process.env.APP_ROOT_DIR = path.join(__dirname, '..', '..');
+process.env.APP_ROOT_DIR = path.join(__dirname, '..');
 process.env.DIST_DIR = path.join(process.env.APP_ROOT_DIR, 'dist');
 process.env.VITE_PUBLIC = process.env.VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT_DIR, 'public') : process.env.DIST_DIR;
 
-const preload = path.join(__dirname, '../preload/index.mjs');
+const preload = path.join(process.env.DIST_DIR, 'preload/index.js');
 const index_html = path.join(process.env.DIST_DIR, 'index.html');
 
 let main_window: BrowserWindow | null = null;

@@ -427,13 +427,14 @@ class XpRouterConstants {
         this.CUSTOM_GENS_DIR = "";
         this.ALL_USER_DATA_PATHS = [];
         // now actually configure the user data dir
+        this.config_user_data_dir(this._get_default_user_data_dir());
     }
     
     config_user_data_dir(user_data_dir:string) {
-        this.SAVED_ROUTES_DIR = fs.realpathSync(path.join(user_data_dir, this._SAVED_ROUTES_FOLDER_NAME))
-        this.SAVED_IMAGES_DIR = fs.realpathSync(path.join(user_data_dir, this._SAVED_IMAGES_FOLDER_NAME))
-        this.OUTDATED_ROUTES_DIR = fs.realpathSync(path.join(user_data_dir, this._OUTDATED_ROUTES_FOLDER_NAME))
-        this.CUSTOM_GENS_DIR = fs.realpathSync(path.join(user_data_dir, this._CUSTOM_GENS_FOLDER_NAME))
+        this.SAVED_ROUTES_DIR = path.join(user_data_dir, this._SAVED_ROUTES_FOLDER_NAME)
+        this.SAVED_IMAGES_DIR = path.join(user_data_dir, this._SAVED_IMAGES_FOLDER_NAME)
+        this.OUTDATED_ROUTES_DIR = path.join(user_data_dir, this._OUTDATED_ROUTES_FOLDER_NAME)
+        this.CUSTOM_GENS_DIR = path.join(user_data_dir, this._CUSTOM_GENS_FOLDER_NAME)
 
         this.ALL_USER_DATA_PATHS = [
             this.SAVED_ROUTES_DIR,
@@ -462,7 +463,7 @@ class XpRouterConstants {
 
                 let frag_info = path.parse(fragment);
                 if (frag_info.ext != ".json") return;
-                if (frag_info.name.toLowerCase().includes(filter_text)) return;
+                if (filter_text.length > 0 && frag_info.name.toLowerCase().includes(filter_text)) return;
                 loaded_routes.push(frag_info.name);
             });
         }
