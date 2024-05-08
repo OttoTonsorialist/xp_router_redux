@@ -2,6 +2,7 @@ import { app, BrowserWindow, shell } from 'electron';
 import path from 'node:path';
 import os from 'node:os';
 import { optimizer } from '@electron-toolkit/utils';
+import { ServerEventController } from '../controllers/server_event_controller';
 
 
 export function global_config() {
@@ -21,7 +22,7 @@ export function global_config() {
     });
 }
 
-export function create_window(preload:string, index_html:string) {
+export function create_main_window(preload:string, index_html:string, sec:ServerEventController) {
     let result = new BrowserWindow({
         width: 2000,
         height: 1200,
@@ -53,5 +54,7 @@ export function create_window(preload:string, index_html:string) {
         if (url.startsWith('https:')) shell.openExternal(url);
         return { action: 'deny' };
     });
+
+    sec.configure_main_window(result);
     return result;
 }

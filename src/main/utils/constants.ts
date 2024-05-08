@@ -415,7 +415,7 @@ class XpRouterConstants {
 
         // TODO: should be importing this from the index.ts file? where we already have it defined
         this.SOURCE_ROOT_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..");
-        this.GLOBAL_CONFIG_DIR = fs.realpathSync(path.join(get_data_dir(), this.APP_DATA_FOLDER_DEFAULT_NAME));
+        this.GLOBAL_CONFIG_DIR = path.join(get_data_dir(), this.APP_DATA_FOLDER_DEFAULT_NAME);
         this.GLOBAL_CONFIG_FILE = path.join(this.GLOBAL_CONFIG_DIR, "config.json");
         this.POKEMON_RAW_DATA = path.join(this.SOURCE_ROOT_PATH, "raw_pkmn_data");
         this.ASSETS_PATH = path.join(this.SOURCE_ROOT_PATH, "assets");

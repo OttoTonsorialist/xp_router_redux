@@ -13,6 +13,8 @@
         "skipLibCheck": true,
         "removeComments": true,
         "noImplicitReturns": true,
+        "sourceMap": true,
+        "baseUrl": "./src",
         "noEmit": true
     },
     "include": ["src"],

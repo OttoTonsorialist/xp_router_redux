@@ -15,7 +15,6 @@ export default defineConfig(({ command }) => {
             vue(),
             electron({
                 main: {
-                    // Shortcut of `build.lib.entry`
                     entry: 'src/main/index.ts',
                     vite: {
                         build: {
@@ -29,8 +28,6 @@ export default defineConfig(({ command }) => {
                     },
                 },
                 preload: {
-                    // Shortcut of `build.rollupOptions.input`.
-                    // Preload scripts may contain Web assets, so use the `build.rollupOptions.input` instead `build.lib.entry`.
                     input: 'src/preload/index.ts',
                     vite: {
                         build: {

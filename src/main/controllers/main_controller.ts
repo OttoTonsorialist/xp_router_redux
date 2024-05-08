@@ -1,10 +1,9 @@
 import log from 'electron-log';
-import fs from 'node:fs';
 import path from 'node:path';
 
 
 export class MainController {
-    private _route_name:string;
+    private _route_name;
 
     constructor() {
         this._route_name = "";
