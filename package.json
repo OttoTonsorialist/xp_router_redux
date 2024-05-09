@@ -9,9 +9,9 @@
     "scripts": {
         "format": "prettier --write .",
         "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-        "bcss": "npx tailwindcss -i ./src/renderer/assets/style_template.css -o ./src/rencerer/assets/style.css",
+        "bcss": "npx tailwindcss -i ./src/renderer/assets/style_template.css -o ./src/renderer/assets/style.css",
         "build": "npm run bcss && vue-tsc --noEmit && vite build",
-        "dev": "vite",
+        "dev": "npm run bcss && vite",
         "tbuild": "npm run build && electron-builder --dir",
         "wtbuild": "npm run build && electron-builder --win",
         "lwt_helper": "npm run build && electron-builder --win",
@@ -22,8 +22,8 @@
     "dependencies": {
         "@electron-toolkit/utils": "^3.0.0",
         "electron-log": "^5.1.2",
-        "source-map-support": "^0.5.21",
-        "electron-updater": "^6.1.8"
+        "electron-updater": "^6.1.8",
+        "source-map-support": "^0.5.21"
     },
     "devDependencies": {
         "@electron-toolkit/eslint-config": "^1.0.2",
@@ -44,6 +44,7 @@
         "vite": "^5.1.5",
         "vite-plugin-electron": "^0.28.4",
         "vite-plugin-electron-renderer": "^0.14.5",
+        "vite-tsconfig-paths": "^4.3.2",
         "vue": "^3.4.21",
         "vue-tsc": "^2.0.6"
     },

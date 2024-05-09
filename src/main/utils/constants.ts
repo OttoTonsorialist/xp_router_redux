@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import log from 'electron-log';
 import os from 'node:os';
-import { get_data_dir } from '../utils/xplatform';
+import { get_data_dir } from './xplatform';
 
 class XpRouterConstants {
     DEBUG_MODE = false;

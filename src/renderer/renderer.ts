@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import $bus from './utils/events';
+import App from './components/app.vue';
+import $bus from './utils/event_bus';
 import { IpcEventController } from './controllers/ipc_event_controller';
+import { route_data } from './global_state';
 
 import './assets/style.css';
 

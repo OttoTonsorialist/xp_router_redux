@@ -14,8 +14,11 @@
         "removeComments": true,
         "noImplicitReturns": true,
         "sourceMap": true,
-        "baseUrl": "./src",
-        "noEmit": true
+        "baseUrl": "./src/",
+        "noEmit": true,
+        "paths": {
+            "@renderer/*": ["./renderer/*"]
+        }
     },
     "include": ["src"],
     "references": [

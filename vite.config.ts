@@ -1,8 +1,10 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import electron from 'vite-plugin-electron/simple';
 import pkg from './package.json';
+import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(({ command }) => {
     fs.rmSync('dist', { recursive: true, force: true });
@@ -13,6 +15,7 @@ export default defineConfig(({ command }) => {
     return {
         plugins: [
             vue(),
+            tsConfigPaths(),
             electron({
                 main: {
                     entry: 'src/main/main.ts',
@@ -53,5 +56,10 @@ export default defineConfig(({ command }) => {
                 };
             })(),
         clearScreen: false,
+        resolve: {
+            alias: {
+                '@renderer': path.resolve("src/renderer"),
+            }
+        }
     };
 });
