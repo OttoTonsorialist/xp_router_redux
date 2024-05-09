@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         escape_listener(event:KeyboardEvent) {
-            if (event.code === 'Escape') {
+            if (event.key === 'Escape') {
                 this.$emit('close_modal');
             }
         }
