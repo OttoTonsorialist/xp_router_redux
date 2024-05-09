@@ -3,19 +3,13 @@
         <div
             v-if="is_active"
             class="w-full h-full absolute top-0 bg-black bg-opacity-30"
-            @keydown.esc="$emit('close_modal')"
-            tabindex="0"
         >
-            <div
-                class="bg-black shadow-lg shadow-slate-900 fixed top-1/2 left-1/2 w-3/4 md:w-1/4 -translate-x-1/2 -translate-y-1/2 p-3 rounded-2xl"
-            >
-                <div
-                    class="flex justify-between"
-                >
-                    <span class="font-bold text-3xl">{{ heading }}</span>
-                    <button
-                        @click="$emit('close_modal')"
-                    >
+            <div class="bg-black shadow-lg shadow-slate-900 fixed top-1/2 left-1/2 w-3/4 md:w-1/4 -translate-x-1/2 -translate-y-1/2 p-3 rounded-2xl">
+                <div class="flex justify-between">
+                    <span class="font-bold text-3xl">
+                        {{ heading }}
+                    </span>
+                    <button @click="$emit('close_modal')">
                         &#10006;
                     </button>
                 </div>
@@ -54,7 +48,7 @@ export default {
     },
     methods: {
         escape_listener(event:KeyboardEvent) {
-            if (event.which === 27) {
+            if (event.code === 'Escape') {
                 this.$emit('close_modal');
             }
         }
