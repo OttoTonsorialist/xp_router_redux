@@ -9,9 +9,6 @@
                     <span class="font-bold text-3xl">
                         {{ heading }}
                     </span>
-                    <button @click="$emit('close_modal')">
-                        &#10006;
-                    </button>
                 </div>
                 <div v-if="is_active" class="p-1">
                     <slot />
@@ -23,36 +20,35 @@
 
 
 <script lang="ts">
-export default {
-    props: {
-        is_active: {
-            type: Boolean,
-            default: false,
+    export default {
+        emits: {
+            close_modal: null,
         },
-        heading: {
-            type: String,
-            default: "",
-        }
-    },
-    emits: {
-        close_modal: null,
-    },
-    watch: {
-        is_active() {
-            if (this.is_active) {
-                window.addEventListener("keydown", this.escape_listener);
-            } else {
-                window.removeEventListener("keydown", this.escape_listener);
+        methods: {
+            escape_listener(event:KeyboardEvent) {
+                if (event.key === 'Escape') {
+                    this.$emit('close_modal');
+                }
             }
-        }
-    },
-    methods: {
-        escape_listener(event:KeyboardEvent) {
-            if (event.key === 'Escape') {
-                this.$emit('close_modal');
+        },
+        props: {
+            is_active: {
+                type: Boolean,
+                default: false,
+            },
+            heading: {
+                type: String,
+                default: "",
             }
-        }
+        },
+        watch: {
+            is_active() {
+                if (this.is_active) {
+                    window.addEventListener("keydown", this.escape_listener);
+                } else {
+                    window.removeEventListener("keydown", this.escape_listener);
+                }
+            }
+        },
     }
-}
-
 </script>

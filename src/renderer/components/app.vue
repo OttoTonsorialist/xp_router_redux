@@ -5,12 +5,13 @@
         :heading="'Load Route'"
         @close_modal="route_data.close_modal()"
     >
-        Test 123
+        <LoadModalContents />
     </Modal>
 </template>
 
 
 <script setup lang="ts">
-import { route_data } from '@renderer/global_state';
-import Modal from '@renderer/components/modal.vue';
+    import { route_data } from '@renderer/global_state';
+    import Modal from '@renderer/components/modal.vue';
+    import LoadModalContents from '@renderer/components/modal_contents/load_modal.vue';
 </script>
