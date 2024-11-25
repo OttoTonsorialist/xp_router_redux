@@ -27,6 +27,20 @@ export function get_safe_path_no_collision(base_folder:string, name:string, ext:
 }
 
 
+export function save_route(data:any, route_name:string, dir_path:string, backup_dir_path:string) {
+    if (!fs.existsSync(dir_path)) fs.mkdirSync(dir_path);
+
+    let final_path = path.join(dir_path, `${route_name}.json`);
+    backup_file_if_exists(final_path, backup_dir_path);
+
+    fs.writeFileSync(
+        final_path,
+        JSON.stringify(data, null, 4),
+        "utf-8"
+    );
+}
+
+
 export function backup_file_if_exists(orig_path:string, backup_dir:string) {
     if (fs.existsSync(orig_path)) {
         let new_backup_loc = get_safe_backup_path(orig_path, backup_dir);
@@ -49,4 +63,13 @@ export function get_safe_backup_path(orig_path:string, backup_dir:string):string
         }
         counter += 1;
     }
+}
+
+
+export function read_json_file(path:string):any {
+    // apparently typescript doesn't like parsing dynamic json files? idk
+    // https://stackoverflow.com/a/70602109
+    return JSON.parse(
+        fs.readFileSync(path, "utf8")
+    );
 }

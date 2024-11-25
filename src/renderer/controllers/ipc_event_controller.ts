@@ -15,4 +15,9 @@ export class IpcEventController {
         route_data.request_load_modal(value);
     }
 
+    load_route(route_name:string) {
+        console.log("loading route: " + route_name);
+        window.ipcRenderer.send('load_route', route_name);
+    }
+
 }

@@ -243,7 +243,8 @@ class XpRouterConstants {
     MOVE_SOURCE_LEVELUP = "LevelUp";
     MOVE_SOURCE_TUTOR = "Tutor/Deleter";
     MOVE_SOURCE_TM_HM = "TM/HM";
-    LEVEL_ANY = "AnyLevel";
+    LEVEL_ANY_STRING = "AnyLevel";
+    LEVEL_ANY_NUMBER = -1;
     DELETE_MOVE = "Delete Move";
 
     IMPORTANT_COLOR = "#b3b6b7";
@@ -265,7 +266,7 @@ class XpRouterConstants {
 
     EMPTY_ROUTE_NAME = "Empty Route";
     PRESET_ROUTE_PREFIX = "PRESET: ";
-    PKMN_VERSION_KEY = "Version";
+    VERSION_KEY = "Version";
 
     RED_VERSION = "Red";
     BLUE_VERSION = "Blue";
@@ -313,16 +314,18 @@ class XpRouterConstants {
         this.MULTI_HIT_5,
     ];
 
-    DOUBLE_HIT_FLAVOR = "two_hit";
-    FLAVOR_MULTI_HIT = "multi_hit";
-    FLAVOR_HIGH_CRIT = "high_crit";
+    DOUBLE_HIT_FLAVOR = "two_hits";
+    FLAVOR_MULTI_HIT = "two_to_five_hits";
+    FLAVOR_HIGH_CRIT = "high_crit_rate";
     FLAVOR_FIXED_DAMAGE = "fixed_damage";
-    FLAVOR_LEVEL_DAMAGE = "level_damage";
+    FLAVOR_LEVEL_DAMAGE = "level_based_damage";
     FLAVOR_PSYWAVE = "psywave";
-    FLAVOR_RECHARGE = "recharge";
-    FLAVOR_TWO_TURN_INVULN = "two_turn_semi_invlunerable";
-    FLAVOR_TWO_TURN = "two_turn";
+    FLAVOR_RECHARGE = "recharge_on_hit";
+    FLAVOR_TWO_TURN_INVULN = "semi_invulnerable_turn";
+    FLAVOR_TWO_TURN = "charge_turn";
 
+    SONICBOOM_MOVE_NAME = "SonicBoom";
+    DRAGON_RAGE_MOVE_NAME = "Dragon Rage";
     STRUGGLE_MOVE_NAME = "Struggle";
     MIMIC_MOVE_NAME = "Mimic";
     EXPLOSION_MOVE_NAME = "Explosion";
@@ -496,7 +499,7 @@ class XpRouterConstants {
         try {
             // If the orig dir is invalid for some reason, assume this is first time setup
             // just create the new dir, and return
-            if (orig_dir.length == 0 || !fs.existsSync(orig_dir)) {
+            if (orig_dir.length === 0 || !fs.existsSync(orig_dir)) {
                 if (!fs.existsSync(new_dir)) {
                     fs.mkdirSync(new_dir);
                 }
@@ -525,7 +528,7 @@ class XpRouterConstants {
             );
 
             // Only nuke the previous dir if it's now empty
-            if (fs.readdirSync(orig_dir).length == 0){
+            if (fs.readdirSync(orig_dir).length === 0){
                 fs.rmdirSync(orig_dir);
             }
 

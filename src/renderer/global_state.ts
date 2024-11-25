@@ -18,10 +18,4 @@ export const route_data = reactive({
     close_modal() {
         this.active_modal = "";
     },
-    do_load(route_name:string) {
-        // TODO: actually send a load message to the backend...
-        console.log("loading route: " + route_name);
-        this.close_modal();
-        this.load_modal_data = [];
-    }
 });

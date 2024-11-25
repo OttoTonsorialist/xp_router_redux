@@ -13,6 +13,7 @@ const app = createApp(App);
 app.config.globalProperties.$bus = $bus;
 
 app.config.globalProperties.route_data = route_data;
+app.config.globalProperties.ipc_event_controller = ipc_event_controller;
 app.config.globalProperties.battle_summary_width = 1400;
 app.config.globalProperties.edit_pane_width = 900;
 
@@ -22,6 +23,7 @@ app.mount('#app');
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     route_data: typeof route_data,
+    ipc_event_controller: typeof ipc_event_controller,
     battle_summary_width: number,
     edit_plane_width: number,
   }

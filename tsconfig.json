@@ -17,7 +17,8 @@
         "baseUrl": "./src/",
         "noEmit": true,
         "paths": {
-            "@renderer/*": ["./renderer/*"]
+            "@renderer/*": ["./renderer/*"],
+            "@main/*": ["./main/*"]
         }
     },
     "include": ["src"],

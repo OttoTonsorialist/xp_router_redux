@@ -28,6 +28,14 @@ export default defineConfig(({ command }) => {
                                 external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
                             },
                         },
+                        resolve: {
+                            alias: {
+                                "@main": path.resolve("src/main"),
+                                "electron/main": "electron",
+                                "electron/common": "electron",
+                                "electorn/renderer": "electron",
+                            }
+                        }
                     },
                 },
                 preload: {
@@ -60,6 +68,6 @@ export default defineConfig(({ command }) => {
             alias: {
                 '@renderer': path.resolve("src/renderer"),
             }
-        }
+        },
     };
 });

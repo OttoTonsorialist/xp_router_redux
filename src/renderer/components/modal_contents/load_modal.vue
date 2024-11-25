@@ -35,7 +35,7 @@
             try_submit_data(){
                 let cur_selection = this._refs().input.selection;
                 if (cur_selection !== null) {
-                    this.route_data.do_load(cur_selection);
+                    this.ipc_event_controller.load_route(cur_selection);
                 }
             },
             valid_selection_handler() {
